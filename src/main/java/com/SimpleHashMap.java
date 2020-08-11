@@ -65,12 +65,9 @@ public class SimpleHashMap<K, V> {
         int index = index(hash);
         //判断我们的Key是否已经存在链表当中,如果存在则替换oldValue为newValue
         for (Node<K, V> n = nodes[index]; n != null; n = n.next) {
-            //对当前操作的链表加一个锁
-            synchronized (n) {
-                if (n.hash == hash && n.k.equals(k) || n.k == k) {
-                    n.v = v;
-                    return;
-                }
+            if (n.hash == hash && n.k.equals(k) || n.k == k) {
+                n.v = v;
+                return;
             }
         }
 
@@ -92,9 +89,9 @@ public class SimpleHashMap<K, V> {
 
     /**
      * 判断是否需要扩容，如果需要扩容则进行扩容操作，如果不扩容就进行添加操作
-     * 因为resize方法的所有操作必须保证原子性，所以直接在方法上加synchronized
+     *
      */
-    private synchronized void resize(Node<K, V> x, int index) {
+    private void resize(Node<K, V> x, int index) {
         Node<K, V> oldNode = nodes[index];
         //判断是否达到扩容要求，如果size超过了扩容阈值并且hash桶对应的链表不为空，则执行扩容逻辑
         if (size >= threshold && oldNode != null) {

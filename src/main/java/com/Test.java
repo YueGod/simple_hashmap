@@ -1,5 +1,7 @@
 package com;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author: 屈子威
  * @create: 2020-08-05
@@ -26,5 +28,6 @@ public class Test {
         map.put("残月", "有雕");
         System.out.println(map.get("残月"));
         System.out.println(map);
+
     }
 }
