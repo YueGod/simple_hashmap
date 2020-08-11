@@ -116,7 +116,7 @@ public class SimpleHashMap<K, V> {
                         this.nodes[i] = node;
                     } else {
                         //将数据插入到新的链表当中，使用一个辅助指针next指向node的下一个节点
-                        Node<K,V> next = node.next;
+                        Node<K, V> next = node.next;
                         node.next = temp;
                         this.nodes[i] = node;
                         node = next;
@@ -124,12 +124,12 @@ public class SimpleHashMap<K, V> {
                     size++;
                 }
             }
-        } else {
-            //直接使用头插法
-            x.next = oldNode;
-            this.nodes[index] = x;
-            size++;
+
         }
+        //直接使用头插法
+        x.next = oldNode;
+        this.nodes[index] = x;
+        size++;
     }
 
     /**
